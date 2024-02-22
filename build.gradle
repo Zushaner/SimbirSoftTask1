@@ -2,14 +2,23 @@ plugins {
     id 'java'
 }
 
-group = 'org.example'
+def aspectJVersion = "1.9.20.1"
+configurations {
+    agent {
+        canBeResolved = true
+        canBeConsumed = true
+    }
+}
+group = 'org'
 version = '1.0-SNAPSHOT'
+compileJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    agent "org.aspectj:aspectjweaver:$aspectJVersion"
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
     testImplementation 'io.qameta.allure:allure-testng:2.24.0'
     testImplementation 'org.testng:testng:7.7.0'
@@ -20,4 +29,8 @@ dependencies {
 
 test {
     useTestNG()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }

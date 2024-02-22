@@ -1,6 +1,6 @@
 package test;
 
-import enums.SortTypeEnum;
+import src.enums.SortTypeEnum;
 import io.github.sskorol.core.DataSupplier;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -10,13 +10,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.CustomersPage;
-import pages.StaticElements;
-import steps.CustomersSteps;
+import src.pages.CustomersPage;
+import src.pages.StaticElements;
+import src.steps.CustomersSteps;
 
 import java.util.stream.Stream;
 

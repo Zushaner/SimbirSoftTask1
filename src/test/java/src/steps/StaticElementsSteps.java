@@ -1,12 +1,11 @@
-package steps;
+package src.steps;
 
-import enums.Pages;
+import src.enums.Pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages.AddCustomerPage;
-import pages.CustomersPage;
-import pages.StaticElements;
+import src.pages.CustomersPage;
+import src.pages.StaticElements;
 
 public class StaticElementsSteps {
     public StaticElements staticElements;

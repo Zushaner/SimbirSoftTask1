@@ -1,11 +1,11 @@
-package steps;
+package src.steps;
 
-import enums.SortTypeEnum;
+import src.enums.SortTypeEnum;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pages.CustomersPage;
-import utils.OtherUtils;
+import src.pages.CustomersPage;
+import src.utils.OtherUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -55,6 +55,9 @@ public class CustomersSteps {
 
     @Step("Проверено, есть ли клиенты в списке")
     public boolean isCustomerInList(String name) {
+        // в систему нельзя добавить customer без имени. поиск по имени считаем корректным поиском клиента
+        // если имя пустое - возвращаем фолс - такого клиента точно нет
+        if(name.isBlank()) return false;
         return customersPage.allCustomersWithName(name).size() > 0;
     }
 }

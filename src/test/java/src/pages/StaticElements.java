@@ -1,7 +1,7 @@
-package pages;
+package src.pages;
 
-import enums.Pages;
-import helpers.WaitHelpers;
+import src.enums.Pages;
+import src.helpers.WaitHelpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

@@ -1,7 +1,5 @@
 package test;
 
-import enums.Pages;
-import helpers.WaitHelpers;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -17,71 +15,69 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.AddCustomerPage;
-import pages.CustomersPage;
-import pages.StaticElements;
-import steps.AddCustomerSteps;
-import steps.CustomersSteps;
-import steps.StaticElementsSteps;
-import utils.StringUtils;
+import src.pages.AddCustomerPage;
+import src.pages.CustomersPage;
+import src.pages.StaticElements;
+import src.steps.AddCustomerSteps;
+import src.steps.CustomersSteps;
+import src.steps.StaticElementsSteps;
+import src.utils.StringUtils;
 
 import static java.lang.Thread.sleep;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 public class AddCustomerTest {
-    private AddCustomerPage addCustomerPage;
-    private StaticElements staticElements;
-    private AddCustomerSteps addCustomerSteps;
-    private WebDriver driver;
-    private StaticElementsSteps staticElementsSteps;
-    private CustomersPage customersPage;
-    private CustomersSteps customersSteps;
+    private ThreadLocal<AddCustomerPage>  addCustomerPage = new ThreadLocal<>();
+    private ThreadLocal<StaticElements> staticElements = new ThreadLocal<>();
+    private ThreadLocal<AddCustomerSteps> addCustomerSteps = new ThreadLocal<>();
+    private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private ThreadLocal<StaticElementsSteps> staticElementsSteps = new ThreadLocal<>();
+    private ThreadLocal<CustomersPage> customersPage = new ThreadLocal<>();
+    private ThreadLocal<CustomersSteps> customersSteps = new ThreadLocal<>();
 
     @BeforeMethod
     public void before() {
-        ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
-//        driver = InitWebDriver.initWebDriver();
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        driver = new ChromeDriver(options);;
-        driver.get(AddCustomerPage.URL);
-        addCustomerPage = PageFactory.initElements(driver, AddCustomerPage.class);
-        staticElements = PageFactory.initElements(driver, StaticElements.class);
-        addCustomerSteps = new AddCustomerSteps(addCustomerPage);
-        staticElementsSteps = new StaticElementsSteps(staticElements);
+        driver.set(new ChromeDriver(options));
+        driver.get().get(AddCustomerPage.URL);
 
-
-
+        addCustomerPage.set(PageFactory.initElements(driver.get(), AddCustomerPage.class));
+        staticElements.set(PageFactory.initElements(driver.get(), StaticElements.class));
+        addCustomerSteps.set(new AddCustomerSteps(addCustomerPage.get()));
+        staticElementsSteps.set(new StaticElementsSteps(staticElements.get()));
     }
 
     @Test(testName = "Позитивный тест")
     @Description("Ввод коррекных даннх и проверка появления клиента в списке")
     @Severity(SeverityLevel.NORMAL)
     public void firstTest() throws InterruptedException {
-        String postCode = RandomStringUtils.randomNumeric(10);
+        String postCode = randomNumeric(10);
         String firstName = StringUtils.generateFirstNameByPostCode(postCode);
-        String lastName = RandomStringUtils.randomAlphabetic(10);
-        addCustomerSteps
+        String lastName = randomAlphabetic(10);
+        addCustomerSteps.get()
                 .inputFirstName(postCode)
                 .inputPostCode(firstName)
                 .inputLastName(lastName)
                 .submitCustomer();
-        Alert alert1 = driver.switchTo().alert();
+        Alert alert1 = driver.get().switchTo().alert();
         Assert.assertTrue(alert1.getText().startsWith("Customer added successfully with customer id :"));
         alert1.accept();
 //        staticElementsSteps.goToPage(Pages.CUSTOMERS_PAGE);
 //        customersPage = (CustomersPage) staticElementsSteps.goToPage(Pages.CUSTOMERS_PAGE);
 
-        customersPage = staticElementsSteps.goToCustomer(driver);
-        customersSteps = new CustomersSteps(customersPage);
-        Assert.assertTrue(customersSteps.isCustomerInList(firstName));
+        customersPage.set(staticElementsSteps.get().goToCustomer(driver.get()));
+        customersSteps.set(new CustomersSteps(customersPage.get()));
+        Assert.assertTrue(customersSteps.get().isCustomerInList(firstName));
     }
 
     @DataProvider(parallel = true)
     public Object[][] nameData() {
         return new Object[][]{
-                new Object[]{"123", "123", ""},
-                new Object[]{"123", "", "123"},
-                new Object[]{"", "123", "123"}
+                new Object[]{randomAlphabetic(5), randomAlphabetic(5), ""},
+                new Object[]{randomAlphabetic(5), "", randomNumeric(5)},
+                new Object[]{"", randomAlphabetic(5), randomNumeric(5)}
         };
     }
 
@@ -89,18 +85,18 @@ public class AddCustomerTest {
     @Description("Создание клиента без одного параметра и проверка его отсутсвия в списке клиентов")
     @Severity(SeverityLevel.NORMAL)
     public void testIncorrectCodeLength(String firstName, String lastName, String postCode) {
-        addCustomerSteps
+        addCustomerSteps.get()
                 .inputFirstName(firstName)
                 .inputLastName(lastName)
                 .inputPostCode(postCode)
                 .submitCustomer();
-        customersPage = staticElementsSteps.goToCustomer(driver);
-        customersSteps = new CustomersSteps(customersPage);
-        Assert.assertFalse(customersSteps.isCustomerInList(firstName));
+        customersPage.set(staticElementsSteps.get().goToCustomer(driver.get()));
+        customersSteps.set(new CustomersSteps(customersPage.get()));
+        Assert.assertFalse(customersSteps.get().isCustomerInList(firstName));
     }
     @AfterMethod
     public void after() {
-        driver.close();
-        driver.quit();
+        driver.get().close();
+        driver.get().quit();
     }
 }

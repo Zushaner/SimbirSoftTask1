@@ -1,4 +1,4 @@
-package utils;
+package src.utils;
 
 import org.openqa.selenium.WebElement;
 import org.testng.internal.collections.Pair;

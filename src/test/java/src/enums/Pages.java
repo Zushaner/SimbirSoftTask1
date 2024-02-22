@@ -1,8 +1,8 @@
-package enums;
+package src.enums;
 
 import org.openqa.selenium.By;
-import pages.AddCustomerPage;
-import pages.CustomersPage;
+import src.pages.AddCustomerPage;
+import src.pages.CustomersPage;
 
 public enum Pages {
     ADD_CUSTOMER_PAGE (AddCustomerPage.class, By.xpath("*//button[@ng-class='btnClass1']")),

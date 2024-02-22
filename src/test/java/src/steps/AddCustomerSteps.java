@@ -1,7 +1,7 @@
-package steps;
+package src.steps;
 
 import io.qameta.allure.Step;
-import pages.AddCustomerPage;
+import src.pages.AddCustomerPage;
 
 
 public class AddCustomerSteps {

@@ -1,4 +1,4 @@
-package utils;
+package src.utils;
 
 public class StringUtils {
     public static String generateFirstNameByPostCode(String code) {

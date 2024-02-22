@@ -1,4 +1,4 @@
-package helpers;
+package src.helpers;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.PageLoadStrategy;
