@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
+    testImplementation 'io.qameta.allure:allure-testng:2.24.0'
+    testImplementation 'org.testng:testng:7.7.0'
+    testImplementation 'org.apache.commons:commons-lang3:3.12.0'
+    testImplementation 'io.github.sskorol:test-data-supplier:2.3.0'
+    testImplementation platform("io.qameta.allure:allure-bom:2.24.0")
+}
+
+test {
+    useTestNG()
+}
