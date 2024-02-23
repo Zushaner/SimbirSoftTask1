@@ -21,7 +21,7 @@ public class AddCustomerSteps {
         return this;
     }
     @Step("Введено имя = {firstName}")
-    public AddCustomerSteps inputFirstName(String firstName) {;
+    public AddCustomerSteps inputFirstName(String firstName) {
         addCustomerPage.getFirstNameInput().sendKeys(firstName);
         return this;
     }

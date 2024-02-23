@@ -2,12 +2,10 @@ package src.utils;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.internal.collections.Pair;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.OptionalDouble;
 
 public class CommonUtils {
