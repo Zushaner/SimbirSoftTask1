@@ -1,44 +1,41 @@
 package src.pages;
 
-import src.helpers.WaitHelpers;
+import src.helpers.CustomWaiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class AddCustomerPage {
-    private WebDriver driver;
-
-    public AddCustomerPage(WebDriver driver) {
-        this.driver = driver;
-        WaitHelpers.waitUntilVisible(driver, firstNameElementLocator);
-    }
     public static final String URL = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/addCust";
 
-    By firstNameElementLocator = By.cssSelector("input[placeholder='First Name']");
+    public AddCustomerPage(WebDriver driver) {
+        By firstNameInputLocator = By.cssSelector("input[placeholder='First Name']");
+        CustomWaiters.waitUntilVisible(driver, firstNameInputLocator);
+    }
+
     @FindBy(css = "input[placeholder='First Name']")
-    WebElement firstNameElement;
+    private WebElement firstNameInput;
     @FindBy(css = "input[placeholder='Last Name']")
-    WebElement lastNameElement;
+    private WebElement lastNameInput;
     @FindBy(css = "input[placeholder='Post Code']")
-    WebElement postCodeElement;
+    private WebElement postCodeInput;
     @FindBy(css= "button[type='submit']")
-    WebElement addCustomerButton;
+    private WebElement addCustomerButton;
 
-    public WebElement getFirstNameElement() {
-        return firstNameElement;
+    public WebElement getFirstNameInput() {
+        return firstNameInput;
     }
 
-    public WebElement getLastNameElement() {
-        return lastNameElement;
+    public WebElement getLastNameInput() {
+        return lastNameInput;
     }
 
-    public WebElement getPostCodeElement() {
-        return postCodeElement;
+    public WebElement getPostCodeInput() {
+        return postCodeInput;
     }
 
     public WebElement getAddCustomerButton() {
         return addCustomerButton;
     }
-
 }

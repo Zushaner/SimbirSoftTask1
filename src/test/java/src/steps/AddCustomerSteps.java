@@ -12,17 +12,17 @@ public class AddCustomerSteps {
 
     @Step("Введен посткод = {postCode}")
     public AddCustomerSteps inputPostCode(String postCode) {
-        addCustomerPage.getPostCodeElement().sendKeys(postCode);
+        addCustomerPage.getPostCodeInput().sendKeys(postCode);
         return this;
     }
     @Step("Введена фамилия = {lastName}")
     public AddCustomerSteps inputLastName(String lastName) {
-        addCustomerPage.getLastNameElement().sendKeys(lastName);
+        addCustomerPage.getLastNameInput().sendKeys(lastName);
         return this;
     }
     @Step("Введено имя = {firstName}")
     public AddCustomerSteps inputFirstName(String firstName) {;
-        addCustomerPage.getFirstNameElement().sendKeys(firstName);
+        addCustomerPage.getFirstNameInput().sendKeys(firstName);
         return this;
     }
     @Step("Нажата кнопка Add Customer")
@@ -30,5 +30,4 @@ public class AddCustomerSteps {
         addCustomerPage.getAddCustomerButton().click();
         return this;
     }
-
 }

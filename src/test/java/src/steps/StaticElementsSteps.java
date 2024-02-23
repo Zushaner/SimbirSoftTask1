@@ -1,6 +1,5 @@
 package src.steps;
 
-import src.enums.Pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -14,15 +13,9 @@ public class StaticElementsSteps {
         this.staticElements = staticElements;
     }
 
-    @Step("Переход на страницу")
-    public Object goToPage(Pages page) {
-        staticElements.getPageMenuButton(page).click();
-        return staticElements.goToPage(page.getPageClass());
-    }
-
-    @Step("")
-    public CustomersPage goToCustomer(WebDriver driver) {
-        staticElements.goToCustomerMenu().click();
+    @Step("Переход на страницу Customers")
+    public CustomersPage goToCustomersPage(WebDriver driver) {
+        staticElements.getCustomerMenuButton().click();
         return PageFactory.initElements(driver, CustomersPage.class);
     }
 }

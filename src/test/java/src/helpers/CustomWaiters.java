@@ -7,10 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WaitHelpers {
-
-
-
+public class CustomWaiters {
     public static void waitUntilVisible(WebDriver driver, By by) {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
