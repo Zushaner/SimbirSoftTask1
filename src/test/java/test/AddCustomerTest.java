@@ -1,19 +1,12 @@
 package test;
 
 import io.qameta.allure.*;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import src.helpers.AllureListener;
 import src.pages.AddCustomerPage;
-import src.pages.CustomersPage;
 import src.pages.StaticElements;
 import src.steps.AddCustomerSteps;
 import src.steps.CustomersSteps;
@@ -23,22 +16,12 @@ import src.utils.StringUtils;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
+@Listeners(AllureListener.class)
 @Epic("Тестирование вкладки Add Customer")
-public class AddCustomerTest {
-    private final ThreadLocal<AddCustomerPage> addCustomerPage = new ThreadLocal<>();
-    private final ThreadLocal<StaticElements> staticElements = new ThreadLocal<>();
-    private final ThreadLocal<AddCustomerSteps> addCustomerSteps = new ThreadLocal<>();
-    private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    private final ThreadLocal<StaticElementsSteps> staticElementsSteps = new ThreadLocal<>();
-    private final ThreadLocal<CustomersPage> customersPage = new ThreadLocal<>();
-    private final ThreadLocal<CustomersSteps> customersSteps = new ThreadLocal<>();
+public class AddCustomerTest extends CommonTest {
 
     @BeforeMethod
-    public void beforeEach() {
-        ChromeOptions options = new ChromeOptions();
-        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        driver.set(new ChromeDriver(options));
-
+    public void initPagesAndSteps() {
         driver.get().get(AddCustomerPage.URL);
         addCustomerPage.set(PageFactory.initElements(driver.get(), AddCustomerPage.class));
         staticElements.set(PageFactory.initElements(driver.get(), StaticElements.class));
@@ -96,8 +79,9 @@ public class AddCustomerTest {
                 "Пользователь не должен находиться в списке");
     }
 
-    @AfterMethod
-    public void afterEach() {
-        driver.get().quit();
+    @Test(description = "Падающий тест на скриншот")
+    @Severity(SeverityLevel.TRIVIAL)
+    public void failedTest() {
+        Assert.fail();
     }
 }

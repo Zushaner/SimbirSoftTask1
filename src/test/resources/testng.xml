@@ -7,7 +7,7 @@
     </test>
     <test name="Тестирование вкладки Customers" parallel="methods" thread-count="2">
         <classes>
-            <class name="test.CustomersListTests"/>
+            <class name="test.CustomersListTest"/>
         </classes>
     </test>
 </suite>
