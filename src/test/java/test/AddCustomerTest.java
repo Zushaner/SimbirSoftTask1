@@ -1,10 +1,16 @@
 package test;
 
-import io.qameta.allure.*;
-import org.openqa.selenium.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 import src.helpers.AllureListener;
 import src.pages.AddCustomerPage;
 import src.pages.StaticElements;
