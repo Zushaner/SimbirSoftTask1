@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Тестирование сайта банка XYZ" parallel="tests" thread-count="2" data-provider-thread-count="3">
+    <test name="Тестирование вкладки Add Customer" parallel="methods" thread-count="2">
+        <classes>
+            <class name="test.AddCustomerTest"/>
+        </classes>
+    </test>
+    <test name="Тестирование вкладки Customers" parallel="methods" thread-count="2">
+        <classes>
+            <class name="test.CustomersListTest"/>
+        </classes>
+    </test>
+</suite>
