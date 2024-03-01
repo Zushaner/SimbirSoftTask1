@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class AllureHelpers {
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
-    public static void initDriver(WebDriver driver){
+    public static void initDriver(WebDriver driver) {
         driverThreadLocal.set(driver);
     }
 

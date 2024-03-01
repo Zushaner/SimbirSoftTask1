@@ -1,10 +1,10 @@
 package src.pages;
 
-import src.helpers.CustomWaiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import src.helpers.CustomWaiters;
 
 public class AddCustomerPage {
     public static final String URL = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/addCust";

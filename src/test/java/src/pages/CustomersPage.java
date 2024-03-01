@@ -11,6 +11,7 @@ import java.util.List;
 public class CustomersPage {
     private final WebDriver driver;
     public static final String URL = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/list";
+
     public CustomersPage(WebDriver driver) {
         this.driver = driver;
         By searchCustomerPanelLocator = By.cssSelector("input[placeholder='Search Customer']");
@@ -29,12 +30,11 @@ public class CustomersPage {
         return driver.findElements(firstNameElementsLocator);
     }
 
-    public WebElement getCustomerDeleteButton(WebElement name){
+    public WebElement getCustomerDeleteButton(WebElement name) {
         return name.findElement(By.xpath("./following-sibling::td/button"));
     }
 
     public List<WebElement> getAllCustomersWithName(String name) {
         return driver.findElements(By.xpath("*//td[contains(text(), '" + name + "')]"));
     }
-
 }

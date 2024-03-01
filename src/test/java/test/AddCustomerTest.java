@@ -61,10 +61,10 @@ public class AddCustomerTest extends CommonTest {
 
     @DataProvider(parallel = true)
     public Object[][] addCustomerWithoutRequiredParamData() {
-        return new Object[][] {
-                new Object[] { randomAlphabetic(5), randomAlphabetic(5), "" },
-                new Object[] { randomAlphabetic(5), "", randomNumeric(5) },
-                new Object[] { "", randomAlphabetic(5), randomNumeric(5) }
+        return new Object[][]{
+                new Object[]{randomAlphabetic(5), randomAlphabetic(5), ""},
+                new Object[]{randomAlphabetic(5), "", randomNumeric(5)},
+                new Object[]{"", randomAlphabetic(5), randomNumeric(5)}
         };
     }
 

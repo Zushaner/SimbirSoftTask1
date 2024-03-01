@@ -23,8 +23,8 @@ public class CustomersListTest extends CommonTest {
     @BeforeMethod
     public void initPagesAndSteps() {
         driver.get().get(CustomersPage.URL);
-        customersPage.set( PageFactory.initElements(driver.get(), CustomersPage.class));
-        customersSteps.set( new CustomersSteps(customersPage.get()));
+        customersPage.set(PageFactory.initElements(driver.get(), CustomersPage.class));
+        customersSteps.set(new CustomersSteps(customersPage.get()));
     }
 
 

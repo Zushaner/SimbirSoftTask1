@@ -1,9 +1,9 @@
 package src.steps;
 
-import src.enums.SortTypeEnum;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import src.enums.SortTypeEnum;
 import src.pages.CustomersPage;
 import src.utils.CommonUtils;
 
@@ -60,7 +60,7 @@ public class CustomersSteps {
     public boolean isCustomerInList(String name) {
         // в систему нельзя добавить customer без имени. поиск по имени считаем корректным поиском клиента
         // если имя пустое - возвращаем фолс - такого клиента точно нет
-        if(name.isBlank()) return false;
+        if (name.isBlank()) return false;
         return customersPage.getAllCustomersWithName(name).size() == 1;
     }
 }
